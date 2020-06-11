@@ -1,5 +1,6 @@
 .settings/
 target/
+temp/
 
 # Java class files
 *.class
