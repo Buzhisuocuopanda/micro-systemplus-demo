@@ -1,0 +1,45 @@
+.article-box{
+    width: 65%;
+    margin: 0.8rem 17.5% 0;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 5px 5px -1px #b7b0b2;
+    padding: 1rem 2rem;
+    border-top: 0.4rem solid #a92e2e;
+}
+
+.article-content{
+    margin: 2rem 0;
+}
+
+.article-content .title{
+    text-align: center;
+    font-size: 2.2rem;
+    line-height: 3.5rem;
+    font-weight: 400;
+}
+
+.article-content .content{
+    margin: 2rem 0;
+}
+
+@media only screen and (max-width: 760px) {
+    .article-box{
+        width: calc(100% - 3rem);
+        margin: .5rem 1.5rem;
+        height: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 5px 5px -1px #b7b0b2;
+        padding: 1rem 2rem;
+        border-top: 0.4rem solid #a92e2e;
+        font-size: 1.2rem;
+    }
+
+    .article-content .title{
+        text-align: center;
+        font-size: 1.5rem;
+        line-height: 3.5rem;
+        font-weight: 400;
+    }
+
+}

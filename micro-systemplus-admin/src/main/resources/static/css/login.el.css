@@ -1,0 +1,325 @@
+.login-main{
+  position: fixed;
+  background: url("../img/login/login-bg.png") no-repeat;
+  height:100vh;
+  width:100%;
+  overflow: hidden;
+  background-size:cover;
+}
+.login-box{
+  text-align: center;
+  background-color: #fff;
+  width: 989px;
+  height: 472px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.login-box-left{
+  float: left;
+  width: 537px;
+  height: 100%;
+  background: url("../img/login/left-bg.png") no-repeat;
+}
+.login-box-left-title{
+  position: relative;
+  top:102px;
+  color: white;
+  font-size: 38px;
+}
+.login-box-left .login-box-logo{
+  position: relative;
+  top:180px;
+  height: 153px;
+  margin: 0px 80px;
+}
+.login-box-logo1{
+  height:100%;
+  width:100%;
+  background: url("../img/login/logo1.png") no-repeat;
+  float: left;
+  width: 50%;
+}
+.login-box-logo2{
+  height:100%;
+  width:100%;
+  background: url("../img/login/logo2.png") no-repeat;
+  float: left;
+  width: 50%;
+}
+.login-box-right{
+  float: left;
+  width: 452px;
+  height: 100%;
+  border-radius: 8px;
+}
+.login-box-form{
+  margin-top: 95px;
+  margin-left: 80px;
+}
+.login-box-right-title{
+  text-align: left;
+  color: #33343D;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+i.layui-icon {
+  float: left;
+  font-style: normal;
+  -webkit-text-stroke-width: .2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 30px;
+}
+.login-input{
+  float: left;
+  width: 300px;
+  border-radius: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: visible;
+  border: 1px solid #E0E0E0;
+  background-color: #FFF;
+  transition: all 0.3s ease-out;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #ECECEE;
+  height: 40px;
+  line-height: 40px;
+}
+.login-input input {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  outline: 0;
+  padding: 0;
+  font-weight: 400;
+  vertical-align: baseline;
+  background-color: transparent;
+  height: 26px;
+  line-height: 26px;
+  margin: 0;
+  padding: 0 8px;
+  border-radius: 4px;
+  color: #333;
+  padding-left: 25px;
+  font-size: 14px;
+}
+.login-btn{
+  float: left;
+  width: 320px;
+  border-radius: 6px;
+  line-height: 50px;
+  height: 50px;
+  background-color: #1A8DF1;
+  font-weight: bold;
+}
+#loginForm{
+ 	width:456px;
+ 	height:430px;
+ 	position:absolute;
+ 	top:40%;
+ 	left:75%;
+ 	margin:-215px 0  0 -228px;
+ }
+ .login-bottom{
+ 	width:456px;
+ 	height:30px;
+ 	line-height:30px;
+ 	font-size:12px;
+ 	color:#fbfbfb;
+ 	position:absolute;
+ 	bottom:5%;
+ 	left:50%;
+ 	margin:0 0 0 -228px;
+ 	z-index:100;
+ }
+.login-banner-div{
+	width: 456px;
+	height:430px;
+	position: relative;
+	margin: 0 auto;
+}
+.login-form{
+	width:420px;
+	height: 260px;
+	background: #fbfbfb;
+	background:rgba(239,238,237,0.8);
+	margin:60px auto 0;
+	border-radius:5px;
+	box-shadow:0 1px 3px #a6a6a6; 
+}
+.form-title{
+	font-family: "微软雅黑", Arial, "隶书", "黑体";
+	color: #0080c2;
+	font-size: 22px;
+	text-align:center;
+	padding: 14px 0 9px 0;
+}
+.input {
+	font-size: 16px;
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+	border: solid 1px #ccc;
+	outline:none;
+	/* -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; */
+	/* padding: 3px; */
+}
+.mybtn{
+	cursor: pointer;
+	text-align: center;
+}
+.btn-orange{
+	display: block;
+	width: 100%;
+	height:30px;
+	line-height:30px;
+	color:#fff;
+	font-size:18px;
+	background-color:#0080c2;
+	border-radius:2px;
+	font-family: "微软雅黑", Arial, "隶书", "黑体";
+}
+.btn-orange:hover{
+	color:#ffffff;
+	background-color:#1cbee5;
+}
+#loginTip{
+	color: red;
+	font-size: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+.copy-right{
+	margin: 10px 0 10px 0;
+	    text-align: center;
+}
+.form-bottom-link{
+	/* margin-top: 15px; */
+	/* border-top: 1px solid #bbb; */
+	/* padding-top: 10px; */
+	text-align: center;
+}
+.form-body-div{
+	margin: 0 auto;
+	margin-bottom: 16px;
+	height: 30px;
+	width:298px;
+	text-align: left;
+	position: relative;
+	background:#fbfbfb;
+	border:1px solid #b5b5b6;
+	border-radius:3px;
+	z-index: 6;
+}
+.form-body-div-mt20{
+	margin-top: 20px;
+}
+.form-body-div-mt30{
+	margin-top: 24px;
+}
+.form-body-div-no-border{
+	border: 0;
+}
+.form-body-div > input{
+ 	height: 30px;
+	line-height: 30px;
+    border: 0;
+    width:298px;
+    float: none;
+    overflow: hidden;
+    font-size: 14px;
+    color:#595757;
+    font-family:"微软雅黑";
+    border-radius:2px;
+    text-indent:30px;
+}
+.login-label{
+	display:inline-block;
+	position: absolute;
+    z-index: 3;
+    top: 6px;
+    left: 0;
+    width: 19px;
+    height: 21px;
+}
+.label-name{
+	background:url(../img/login/index_user_icon.png) no-repeat;
+	margin:-3px 12px 0 5px;
+}
+.label-password{
+	background:url(../img/login/index_password_icon.png) no-repeat;
+	margin:0 12px 0 5px;
+}
+.form-body-div > input:focus{
+	box-shadow:0 1px 8px #09b4dd; 
+	color:#333;
+}
+.index_lgoo{
+	background:url(../img/login/index_logo.png) no-repeat;
+	width:456px;
+	height:93px;
+	margin:0 auto;
+}
+
+#simpleValidateCode{
+	width: 135px;
+}
+.login-validate-code{
+	width: 108px;
+	position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    height: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    display: block\9;
+    border:1px solid #b5b5b6;
+    border-radius:5px;
+}
+.form-body-validate{
+	background:none;
+	border:none;
+	margin-bottom:20px;
+}
+#simpleValidateCode{
+	background:#fbfbfb;
+	width:162px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #b5b5b6;
+}
+.validate_for{
+	background: url(../img/login/index_password_icon.png) no-repeat;
+	margin: 0 12px 0 5px;
+	display: inline-block;
+	position: absolute;
+	z-index: 3;
+	top: 6px;
+	left: 0;
+	width: 19px;
+	height: 21px;
+}
+/*去掉虚线框*/
+a{text-decoration:none;-moz-outline:none;outline: none;}
+a:active {star:expression(this.onFocus=this.blur());}
+a:focus {-moz-outline:none;outline:0;}
+::-moz-focus-inner {border-color: transparent;}
+
+a:link{color:#666;text-decoration:none;}
+a:visited{color:#666;text-decoration: none;}
+a:hover{text-decoration:none;border-bottom: 1px solid #666;}
+a:active{color:#FFAD77;text-decoration:none;outline:0;}

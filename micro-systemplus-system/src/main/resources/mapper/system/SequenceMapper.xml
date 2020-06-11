@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mkst.mini.systemplus.system.mapper.SequenceMapper">
+    
+    <resultMap type="Sequence" id="SequenceResult">
+        <result property="name"    column="NAME"    />
+        <result property="currentValue"    column="CURRENT_VALUE"    />
+        <result property="incrementValue"    column="INCREMENT_VALUE"    />
+        <result property="uuidType"    column="UUID_TYPE"    />
+        <result property="keyLenType"    column="KEY_LEN_TYPE"    />
+        <result property="keyLen"    column="KEY_LEN"    />
+        <result property="keyFixType"    column="KEY_FIX_TYPE"    />
+        <result property="keyFix"    column="KEY_FIX"    />
+        <result property="keyDateType"    column="KEY_DATE_TYPE"    />
+        <result property="keyDateLoop"    column="KEY_DATE_LOOP"    />
+        <result property="keyDateLoopInit"    column="KEY_DATE_LOOP_INIT"    />
+        <result property="keyDateFormat"    column="KEY_DATE_FORMAT"    />
+        <result property="keyDate"    column="KEY_DATE"    />
+    </resultMap>
+	
+	<sql id="selectSequenceVo">
+        select NAME, CURRENT_VALUE, INCREMENT_VALUE, UUID_TYPE, KEY_LEN_TYPE, KEY_LEN, KEY_FIX_TYPE, KEY_FIX, KEY_DATE_TYPE, KEY_DATE_LOOP, KEY_DATE_LOOP_INIT, KEY_DATE_FORMAT, KEY_DATE from sys_sequence
+    </sql>
+	
+    <select id="selectSequenceList" parameterType="Sequence" resultMap="SequenceResult">
+        <include refid="selectSequenceVo"/>
+        <where>  
+            <if test="name != null  and name != '' "> and NAME = #{name}</if>
+             <if test="currentValue != null "> and CURRENT_VALUE = #{currentValue}</if>
+             <if test="incrementValue != null "> and INCREMENT_VALUE = #{incrementValue}</if>
+             <if test="uuidType != null "> and UUID_TYPE = #{uuidType}</if>
+             <if test="keyLenType != null "> and KEY_LEN_TYPE = #{keyLenType}</if>
+             <if test="keyLen != null "> and KEY_LEN = #{keyLen}</if>
+             <if test="keyFixType != null "> and KEY_FIX_TYPE = #{keyFixType}</if>
+             <if test="keyFix != null  and keyFix != '' "> and KEY_FIX = #{keyFix}</if>
+             <if test="keyDateType != null "> and KEY_DATE_TYPE = #{keyDateType}</if>
+             <if test="keyDateLoop != null "> and KEY_DATE_LOOP = #{keyDateLoop}</if>
+             <if test="keyDateLoopInit != null "> and KEY_DATE_LOOP_INIT = #{keyDateLoopInit}</if>
+             <if test="keyDateFormat != null "> and KEY_DATE_FORMAT = #{keyDateFormat}</if>
+             <if test="keyDate != null "> and KEY_DATE = #{keyDate}</if>
+         </where>
+    </select>
+    
+    <select id="selectSequenceById" parameterType="String" resultMap="SequenceResult">
+        <include refid="selectSequenceVo"/>
+        where NAME = #{name}
+    </select>
+        
+    <insert id="insertSequence" parameterType="Sequence">
+        insert into sys_sequence
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">NAME,</if>
+			<if test="currentValue != null  ">CURRENT_VALUE,</if>
+			<if test="incrementValue != null  ">INCREMENT_VALUE,</if>
+			<if test="uuidType != null  ">UUID_TYPE,</if>
+			<if test="keyLenType != null  ">KEY_LEN_TYPE,</if>
+			<if test="keyLen != null  ">KEY_LEN,</if>
+			<if test="keyFixType != null  ">KEY_FIX_TYPE,</if>
+			<if test="keyFix != null  and keyFix != ''  ">KEY_FIX,</if>
+			<if test="keyDateType != null  ">KEY_DATE_TYPE,</if>
+			<if test="keyDateLoop != null  ">KEY_DATE_LOOP,</if>
+			<if test="keyDateLoopInit != null  ">KEY_DATE_LOOP_INIT,</if>
+			<if test="keyDateFormat != null  ">KEY_DATE_FORMAT,</if>
+			<if test="keyDate != null  ">KEY_DATE,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="currentValue != null  ">#{currentValue},</if>
+			<if test="incrementValue != null  ">#{incrementValue},</if>
+			<if test="uuidType != null  ">#{uuidType},</if>
+			<if test="keyLenType != null  ">#{keyLenType},</if>
+			<if test="keyLen != null  ">#{keyLen},</if>
+			<if test="keyFixType != null  ">#{keyFixType},</if>
+			<if test="keyFix != null  and keyFix != ''  ">#{keyFix},</if>
+			<if test="keyDateType != null  ">#{keyDateType},</if>
+			<if test="keyDateLoop != null  ">#{keyDateLoop},</if>
+			<if test="keyDateLoopInit != null  ">#{keyDateLoopInit},</if>
+			<if test="keyDateFormat != null  ">#{keyDateFormat},</if>
+			<if test="keyDate != null  ">#{keyDate},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSequence" parameterType="Sequence">
+        update sys_sequence
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="currentValue != null  ">CURRENT_VALUE = #{currentValue},</if>
+            <if test="incrementValue != null  ">INCREMENT_VALUE = #{incrementValue},</if>
+            <if test="uuidType != null  ">UUID_TYPE = #{uuidType},</if>
+            <if test="keyLenType != null  ">KEY_LEN_TYPE = #{keyLenType},</if>
+            <if test="keyLen != null  ">KEY_LEN = #{keyLen},</if>
+            <if test="keyFixType != null  ">KEY_FIX_TYPE = #{keyFixType},</if>
+            <if test="keyFix != null  and keyFix != ''  ">KEY_FIX = #{keyFix},</if>
+            <if test="keyDateType != null  ">KEY_DATE_TYPE = #{keyDateType},</if>
+            <if test="keyDateLoop != null  ">KEY_DATE_LOOP = #{keyDateLoop},</if>
+            <if test="keyDateLoopInit != null  ">KEY_DATE_LOOP_INIT = #{keyDateLoopInit},</if>
+            <if test="keyDateFormat != null  ">KEY_DATE_FORMAT = #{keyDateFormat},</if>
+            <if test="keyDate != null  ">KEY_DATE = #{keyDate},</if>
+        </trim>
+        where NAME = #{name}
+    </update>
+
+	<delete id="deleteSequenceById" parameterType="String">
+        delete from sys_sequence where NAME = #{name}
+    </delete>
+	
+    <delete id="deleteSequenceByIds" parameterType="String">
+        delete from sys_sequence where NAME in 
+        <foreach item="name" collection="array" open="(" separator="," close=")">
+            #{name}
+        </foreach>
+    </delete>
+    
+</mapper>

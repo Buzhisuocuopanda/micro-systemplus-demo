@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link th:href="@{/ajax/libs/summernote/summernote.css}" rel="stylesheet"/>
+<link th:href="@{/ajax/libs/summernote/summernote-bs3.css}" rel="stylesheet"/>
+<body class="gray-bg">
+    <div class="wrapper">
+        <form class="form-horizontal m" id="form-notice-edit" th:object="${notice}">
+            <input id="noticeId" name="noticeId" th:field="*{noticeId}"  type="hidden">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>基本信息</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">公告标题：</label>
+                                <div class="col-sm-9">
+                                    <input id="noticeTitle" name="noticeTitle" th:field="*{noticeTitle}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">公告类型：</label>
+                                <div class="col-sm-9">
+                                    <select name="noticeType" class="form-control m-b" th:with="type=${@dict.getType('sys_notice_type')}">
+                                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{noticeType}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">公告内容：</label>
+                                <div class="col-sm-9">
+                                    <input id="noticeContent" name="noticeContent" th:field="*{noticeContent}" type="hidden">
+                                    <div id="editor" class="summernote"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">公告状态：</label>
+                                <div class="col-sm-9">
+                                    <div class="radio-box" th:each="dict : ${@dict.getType('sys_notice_status')}">
+                                        <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
+                                        <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>公告图片</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <img th:if="*{noticeImage} != null" th:src="@{/profile/download/}+*{noticeImage}"
+                                 style="width: 100%;height: 200px"
+                                 id="noticeImg">
+                            <img th:if="*{noticeImage} == null" th:src="@{/img/image2.png}" id="noticeImg" style="height: 200px;width: 100%;">
+                            <input type="hidden" name="noticeImage" id="noticeImage" th:field="*{noticeImage}">
+                        </div>
+                        <div class="ibox-footer">
+                            <button type="button" class="jp-image-browser btn btn-default btn-sm "
+                                    for-src="noticeImg"
+                                    for-input="noticeImage" onclick="$('#noticeFile').click();">选择图片
+                            </button>
+                            <input id="noticeFile" type="file" accept="image/png,image/jpeg" style="display: none;">
+                            <a href="javascript:;" style="padding-left: 15px" id="removeThumbnail">移除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script th:src="@{/ajax/libs/summernote/summernote.min.js}"></script>
+    <script th:src="@{/ajax/libs/summernote/summernote-zh-CN.js}"></script>
+    <script type="text/javascript">
+        var prefix = ctx + "system/notice";
+    
+	    $(function() {
+		    $('.summernote').summernote({
+				height : '220px',
+				lang : 'zh-CN'
+		    });
+			var content = $("#noticeContent").val();
+		    $('#editor').code(content);
+	    });
+
+        $("#form-notice-edit").validate({
+            focusCleanup: true,
+            rules:{
+                noticeTitle:{
+                    required:true,
+                }
+            }
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                var sHTML = $('.summernote').code();
+                $("#noticeContent").val(sHTML);
+                $.operate.save(prefix + "/edit", $('#form-notice-edit').serialize());
+            }
+        }
+
+        $("#noticeFile").change(function () {
+            var file = this.files[0];
+            var fileName=this.files[0].name;
+            if (window.FileReader) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                //监听文件读取结束后事件
+                reader.onloadend = function (e) {
+                    var formdata=new FormData();
+                    formdata.append("file",$('#noticeFile')[0].files[0]);
+                    //请求数据
+                    $.ajax({
+                        type: "post",
+                        url: prefix+"/uploadNoticeImg",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            var path = res;
+                            $("#noticeImg").attr("src",ctx+"profile/download/"+path );
+                            $("#noticeImage").val(path);
+                        }
+                    });
+                };
+            }
+        });
+        $("#removeThumbnail").on("click", function () {
+            $("#noticeImg").attr("src", ctx+"img/image2.png");
+            $("#noticeImage").val("");
+        })
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.login-main{
+    position: fixed;
+    background: url("images/login-bg.png") no-repeat;
+    height:100vh;
+    width:100%;
+    overflow: hidden;
+    background-size:cover;
+  }
+  .login-box{
+    text-align: center;
+    background-color: #fff;
+    width: 989px;
+    height: 472px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+  .login-box-left{
+    float: left;
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid #ddd;
+  }
+  .login-box-right{
+    float: left;
+    width: 49%;
+    height: 100%;
+    border-radius: 8px;
+  }

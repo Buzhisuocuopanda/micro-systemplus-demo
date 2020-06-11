@@ -1,0 +1,163 @@
+.apply-box {
+    width: 65%;
+    margin: 0.8rem 17.5% 0;
+    height: 100%;
+    box-shadow: 0 5px 5px -1px #b7b0b2;
+    padding: 1rem 2rem;
+    border-top: 0.4rem solid #164f85;
+}
+
+.apply-red-btn{
+    height: 2.5rem;
+    background-color: #a92e2e;
+    color: #fff;
+    border: 1px solid #f1f1f1;
+}
+.apply-blue-btn {
+    height: 2.5rem;
+    background-color: #164f85 !important;
+    color: #fff !important;
+    border: 1px solid #f1f1f1 !important;
+}
+
+.apply-table {
+    margin-top: 2rem;
+}
+.apply-box .table tbody tr td, .apply-box .table thead tr th{
+    text-align: center;
+}
+.apply-box .table tbody tr td:nth-child(3) {
+    max-width: 200px;
+}
+@media only screen and (max-width: 760px) {
+    .apply-mob-box {
+        height: 100%;
+        padding: 0 1rem;
+        width: calc(100%);
+    }
+
+    .apply-li-item{
+        margin-top: 2rem;
+        box-shadow: 0 5px 5px -1px #b7b0b2;
+        border-top: 0.4rem solid #164f85;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .li-detail {
+        padding: .2rem 0;
+    }
+}
+
+/* 新增申办的样式 */
+/* 1.公证事项列表 */
+.apply-notarization-box {
+    width: 65%;
+    margin: 0.8rem 17.5% 0;
+    height: 100%;
+    box-shadow: 0 5px 5px -1px #b7b0b2;
+    padding: 1rem 2rem;
+    border-top: 0.4rem solid #164f85;
+}
+.notarization-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+.sub-notarization {
+    margin-top: 1.5rem;
+    width: calc((100% - 1rem )/ 4 - 2rem);
+    /*width: 25%;*/
+    margin-left: 2rem;
+    line-height: 5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #b7b0b2;
+    box-shadow: 0 2px 2px -1px #b7b0b2;
+    border-radius: .5rem;
+    font-size: 2rem;
+}
+
+.sub-notarization .glyphicon {
+    color: #a92e2e;
+}
+
+.sub-notarization:hover{
+    border: 1px solid #46b7f3;
+    color: #46b7f3;
+}
+
+.sub-notarization:hover .glyphicon{
+    color: #46b7f3;
+}
+
+@media only screen and (max-width: 760px) {
+    .apply-notarization-box {
+        height: 100%;
+        padding: 0 .5rem;
+        width: calc(100% - 1rem);
+        margin: .5rem;
+    }
+
+    .notarization-box {
+        flex-direction: column;
+    }
+
+    .sub-notarization {
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+}
+
+/*2.选择公证事项*/
+.process-box {
+    text-align: center;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.notar-form {
+    width: 100%;
+}
+
+.notar-form-group{
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px dashed #164f85;
+}
+.notar-form-title {
+    line-height: 3rem;
+}
+.notar-form-group .form-group{
+    display: inline-block;
+    width: 25rem;
+}
+
+.notar-form-group .form-group:nth-child(2) {
+    margin-left: 2rem;
+}
+
+.notar-people-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e9e9e9;
+    border-radius: .2rem;
+    padding: 1rem;
+    color: #7d7d7d;
+    margin-bottom: 1.5rem;
+}
+
+.notar-people-box .left-info{
+    line-height: 3rem;
+}
+
+.notar-people-box .left-info:nth-child(1) span{
+    margin-left: 3rem;
+}

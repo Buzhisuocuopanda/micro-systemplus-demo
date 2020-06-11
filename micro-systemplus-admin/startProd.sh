@@ -1,0 +1,1 @@
+nohup java -jar /lawyer/systemplus-admin.jar &

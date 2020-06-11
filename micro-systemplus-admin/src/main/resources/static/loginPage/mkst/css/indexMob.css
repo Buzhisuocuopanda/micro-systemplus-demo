@@ -1,0 +1,149 @@
+@media only screen and (max-width: 760px) {
+    .top-bar{
+        height: 10rem;
+    }
+    .top-title {
+        width: 50vw;
+    }
+    .top-bar .user-box{
+        top: .5rem;
+        right: 6%;
+    }
+    .top-logo{
+        background-size: 76%;
+        width: 6rem;
+        height: 6rem;
+    }
+    .show-pc {
+        display: none!important;
+    }
+    .show-mob {
+        display: inline-block!important;
+    }
+    .home {
+        margin-top:-7rem;
+    }
+    .middle-bar {
+        width: calc(100% - 1rem);
+        margin: -13rem 0.5rem 0rem;
+    }
+    .nav-bar-mob {
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+    .nav-bar-mob-logo {
+        display: block;
+        width: 96%;
+        text-align: right;
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .nav-li-item {
+        line-height: 2.5rem;
+        font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        text-align: center;
+        padding: 0 0.5rem;
+        overflow: hidden;
+    }
+    .nav-bar-item{
+        color: #888;
+        width: 100%;
+        border-bottom: 2px solid #f1f1f1;
+    }
+    .active-bar {
+        border: none;
+        background-color: #164f85;
+        color: #fff;
+    }
+
+    .middle-info-bar {
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+    }
+
+    .main-carousel {
+        margin-top: -2rem;
+    }
+
+    .dynamic-content {
+        line-height:3rem;
+        font-size: 1rem;
+        box-shadow: 0 2px 5px -1px #b7b0b2;
+        padding: 0 1rem;
+    }
+
+    .main-content {
+        width: calc(100% - 1rem);
+        margin: 1rem 0.5rem;
+        flex-direction: column;
+    }
+    .left-box {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .left-top-box, .right-box {
+        border-top: none;
+    }
+
+    .lt-list {
+        font-size: 1.3rem;
+        line-height: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .lt-list-content{
+        width:100%;
+        -webkit-line-clamp:1;
+    }
+    .right-list {
+        width: 7rem;
+    }
+
+    .gzh-box {
+        flex-direction: row-reverse;
+    }
+    .gzh-tip{
+        align-items: flex-start;
+    }
+
+    .guide-item {
+        height: 100px;
+    }
+
+    .guide-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .everyuse-box {
+        margin-top: 1rem ;
+        margin-left: .5rem;
+    }
+
+    .use-box {
+        width: calc((100% - .5rem) / 2 - 1rem);
+    }
+
+    .bottom-link{
+        width: calc(100% - 1rem);
+        margin: 2rem 1rem;
+    }
+
+    /* 面包屑 */
+    .breadcrumb-box{
+        width: calc(100% - 1rem);
+        margin: 0.5rem;
+        background-color: transparent;
+    }
+    .left-bread{
+        background-color: transparent;
+    }
+}

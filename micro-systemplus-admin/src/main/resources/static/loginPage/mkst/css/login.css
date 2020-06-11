@@ -1,0 +1,185 @@
+body{
+    background-color: #fff;
+}
+.login-top-bar{
+    padding: 3rem 21.5%;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #107ec4;
+    min-height: 120px;
+}
+
+.login-middle-box{
+    height: 600px;
+    background: url('../static/images/login_bg.jpg') no-repeat center center;
+    overflow: hidden;
+
+}
+
+.login-form{
+    width: 33rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    margin: 80px 60%;
+    padding: 0 3rem 1rem 3rem;
+}
+
+.login-form .form-top {
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 2rem;
+    line-height: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-btn{
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.active-login-btn span{
+    border-bottom: 2px solid #D51423;
+    color: #D51423;
+    display: inline-block;
+    height: 5rem;
+}
+
+.form-login-content{
+    margin: 2rem 0;
+}
+
+.form-login-content input{
+    height: 4rem;
+}
+
+.login-btn{
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.login-btn button {
+    width: 100%;
+    height:3.5rem;
+}
+
+.remember{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.remember .forget, .checkbox .is-read{
+    color: #0099FF;
+}
+
+.active-code {
+    background-color: #107bc5!important;
+    color: #fff!important;
+    height: 4rem!important;
+}
+
+/* 忘记密码 */
+.forget-box{
+    height: 600px;
+    width: 100%;
+    padding: 3rem 21.5%;
+    background-image: linear-gradient(#f3f3f3, #ffffff);
+}
+.forget-middle-box{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.forget-title{
+    line-height: 6rem;
+    background-color: #e4e4e4;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.forget-form {
+    margin-top: 2rem;
+}
+.form-horizontal{
+    padding: 0 35%;
+}
+.forget-form-group{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.forget-right-bar {
+    color: #333333;
+    line-height: 2rem;
+}
+.forget-right-bar .pointer {
+    color: #0099FF;
+    padding: 0 .5rem;
+}
+.form-label {
+    width: 120px;
+}
+.forget-form-group .form-control{
+    height: 3.5rem;
+}
+.forget-sure{
+    width: 100%;
+}
+.forget-sure button{
+    width: 100%;
+    height: 3.5rem;
+}
+.forget-code{
+    height: 3.5rem;
+    background-color: #d9534f;
+    color: #fff;
+}
+
+@media only screen and (max-width: 760px) {
+    .login-top-bar{
+        padding: 1rem;
+    }
+    .login-top-bar img{
+        width: 60%;
+    }
+    .login-middle-box{
+        height: auto;
+        background: none;
+    }
+    .login-form{
+        width: calc(100% - 4rem);
+        background-color: #fff;
+        border-radius: .5rem;
+        margin: 2rem;
+        padding: 0;
+    }
+    .login-form .form-top{
+        font-size: 1.8rem;
+        line-height: 3.5rem;
+        height: 3.5rem;
+    }
+    .active-login-btn span{
+        height: 3.5rem;
+    }
+    .form-control, .login-btn, .remember{
+        width: calc(100% - 2rem);
+        margin-left: 1rem;
+    }
+    .register-box-content .checkbox {
+        margin-left: 1rem;
+    }
+    .form-login-content .input-group .input-group-btn button {
+        margin-right:1rem;
+    }
+
+    .footer{
+        margin-top: 2.5rem;
+    }
+}

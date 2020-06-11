@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.micro-systemplus</groupId>
+	<artifactId>systemplus</artifactId>
+	<version>3.3</version>
+
+	<name>MICRO::SYSTEM::PLUS</name>
+	<url>http://www.micro-systemplus.vip</url>
+	<description>MicroSystemPlus管理系统</description>
+
+	<properties>
+		<micro-systemplus.version>3.3</micro-systemplus.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<shiro.version>1.4.0</shiro.version>
+		<thymeleaf.extras.shiro.version>2.0.0</thymeleaf.extras.shiro.version>
+		<mybatis.boot.version>1.3.2</mybatis.boot.version>
+		<druid.version>1.1.10</druid.version>
+		<bitwalker.version>1.19</bitwalker.version>
+		<kaptcha.version>2.3.2</kaptcha.version>
+		<swagger.version>2.7.0</swagger.version>
+		<pagehelper.boot.version>1.2.5</pagehelper.boot.version>
+		<oshi.version>3.9.1</oshi.version>
+		<fastjson.version>1.2.70</fastjson.version>
+		<knife4j.version>2.0.3</knife4j.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.0.5.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>micro-systemplus-admin</module>
+		<module>micro-systemplus-framework</module>
+		<module>micro-systemplus-system</module>
+		<module>micro-systemplus-quartz</module>
+		<module>micro-systemplus-generator</module>
+		<module>micro-systemplus-common</module>
+		<module>micro-systemplus-api</module>
+		<module>micro-systemplus-app</module>
+		<module>micro-systemplus-mq</module>
+		<module>micro-systemplus-license-server</module>
+		<module>micro-systemplus-license-check</module>
+		<module>micro-systemplus-cms</module>
+		<!--<module>micro-systemplus-portal</module>-->
+		<module>micro-systemplus-ehcache</module>
+		<module>micro-systemplus-redis</module>
+		<module>micro-systemplus-sms</module>
+	</modules>
+	<packaging>pom</packaging>
+
+
+	<dependencies>
+
+		<!--Spring框架基本的核心工具 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- SpringBoot集成mybatis框架 -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.boot.version}</version>
+		</dependency>
+
+		<!-- Mysql驱动包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<!-- 日志工具类 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<!-- fastjson json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.3.2</version>
+		</dependency>
+		<!-- 微信小程序：weixin-java-miniapp -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-miniapp</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<!-- 微信支付：weixin-java-pay -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-pay</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<!-- 微信开放平台：weixin-java-open -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-open</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<!-- 公众号（包括订阅号和服务号）：weixin-java-mp -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-mp</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<!-- 企业号/企业微信：weixin-java-cp -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-cp</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-common</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<!-- lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>net.guerlab</groupId> <artifactId>sdk-alipay-starter</artifactId> 
+			<version>2.1.0</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>micro-release</id>
+			<url>http://192.168.1.10:8081/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>micro-snapshot</id>
+			<url>http://192.168.1.10:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://192.168.1.10:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://192.168.1.10:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

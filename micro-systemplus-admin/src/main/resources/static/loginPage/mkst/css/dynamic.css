@@ -1,0 +1,115 @@
+.middle-dynamic {
+    width: 65%;
+    margin: 0.8rem 17.5% 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.middle-dynamic .sub-box {
+    background-color: #ffffff;
+    box-shadow: 0 5px 5px -1px #b7b0b2;
+}
+
+.middle-dynamic .left-dynamic-box {
+    flex: 1;
+    margin-right: 1.5rem;
+    padding: 1rem 2rem;
+    border-top: 0.4rem solid #a92e2e;
+}
+
+.middle-dynamic .right-dynamic-box{
+    flex: 3;
+    border-top: 0.4rem solid #164f85;
+    padding: 1rem 3rem;
+}
+
+.dynamic-nav{
+    margin-top: 1rem;
+}
+
+.dynamic-nav-li{
+    padding: 0 1rem;
+    line-height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dynamic-icon{
+    color: #c6c6c6;
+}
+
+.active-dynamic{
+    color: #fff;
+    border-radius: .3rem;
+    background-image: linear-gradient(#c32d2d, #be1c1b);
+}
+
+.active-dynamic .dynamic-icon {
+    color: #fff;
+}
+
+.dynamic-list {
+    margin-top: 1rem;
+}
+
+.dynamic-list .dynamic-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #cbcbcb;
+    line-height: 3rem;
+    height: 3rem;
+    overflow: hidden;
+}
+.dynamic-list .dynamic-item .title{
+    width: calc(100% - 120px);
+    word-break:break-all;
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    cursor: pointer;
+}
+.dynamic-list .dynamic-item .time {
+    color: #7d7d7d;
+    width: 120px;
+    text-align: right;
+}
+
+/* 业务指南 */
+.middle-dynamic .right-dynamic-box .organ-guide .organ-guide-title{
+    text-align: center;
+    font-size: 2.2rem;
+    line-height: 3.5rem;
+    font-weight: 400;
+}
+.middle-dynamic .right-dynamic-box .organ-guide .organ-guide-content {
+    margin: 2rem 0;
+}
+
+
+@media only screen and (max-width: 760px) {
+    .middle-dynamic{
+        width: calc(100% - 3rem);
+        margin: .5rem 1.5rem;
+        flex-direction: column;
+    }
+
+    .middle-dynamic .left-dynamic-box{
+        margin: 0;
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* 业务指南 */
+    .middle-dynamic .right-dynamic-box{
+        padding: 1rem;
+    }
+
+    .middle-dynamic .right-dynamic-box .organ-guide .organ-guide-title{
+        font-size: 1.8rem;
+    }
+
+}
