@@ -47,7 +47,6 @@
 		<module>micro-systemplus-framework</module>
 		<module>micro-systemplus-system</module>
 		<module>micro-systemplus-quartz</module>
-		<module>micro-systemplus-generator</module>
 		<module>micro-systemplus-common</module>
 		<module>micro-systemplus-ehcache</module>
 	</modules>
