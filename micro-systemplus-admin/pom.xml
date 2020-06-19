@@ -46,11 +46,11 @@
             <version>${micro-systemplus.version}</version>
         </dependency>
         
-        <dependency>
+        <!--<dependency>
             <groupId>com.micro-systemplus</groupId>
             <artifactId>systemplus-generator</artifactId>
             <version>${micro-systemplus.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.micro-systemplus</groupId>
