@@ -175,33 +175,24 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>micro-release</id>
-			<url>http://192.168.1.10:8081/nexus/content/repositories/releases/</url>
-		</repository>
-
-		<snapshotRepository>
-			<id>micro-snapshot</id>
-			<url>http://192.168.1.10:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://192.168.1.10:8081/nexus/content/groups/public/</url>
+			<name>mycostern nexus</name>
+			<url>http://192.168.1.23:8081/nexus/repository/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
-
 	<pluginRepositories>
 		<pluginRepository>
 			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://192.168.1.10:8081/nexus/content/groups/public/</url>
+			<name>mycostern nexus</name>
+			<url>http://192.168.1.23:8081/nexus/repository/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
