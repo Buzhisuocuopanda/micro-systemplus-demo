@@ -1,14 +1,17 @@
 package com.mkst.mini.systemplus.resful.utils;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cglib.core.Converter;
 
+import javax.xml.rpc.ServiceException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+@Slf4j
 public class BeanCopyUtils {
     /**
      * 使用缓存提高效率
@@ -33,7 +36,11 @@ public class BeanCopyUtils {
             }
         } catch (Exception e) {
             log.error("【Copy 对象属性】-Copy错误：${}$", ExceptionUtils.getStackTrace(e));
-            throw new ServiceException(e.getMessage());
+            try {
+                throw new ServiceException(e.getMessage());
+            } catch (ServiceException ex) {
+                ex.printStackTrace();
+            }
         }
         return target;
     }
@@ -54,7 +61,11 @@ public class BeanCopyUtils {
             }
         } catch (Exception e) {
             log.error("【Copy 对象属性】-Copy错误：${}$", ExceptionUtils.getStackTrace(e));
-            throw new ServiceException(e.getMessage());
+            try {
+                throw new ServiceException(e.getMessage());
+            } catch (ServiceException ex) {
+                ex.printStackTrace();
+            }
         }
         return target;
     }
@@ -82,7 +93,11 @@ public class BeanCopyUtils {
             }
         } catch (Exception e) {
             log.error("【Copy 对象属性】-Copy错误：${}$", ExceptionUtils.getStackTrace(e));
-            throw new ServiceException(e.getMessage());
+            try {
+                throw new ServiceException(e.getMessage());
+            } catch (ServiceException ex) {
+                ex.printStackTrace();
+            }
         }
         return targetList;
     }

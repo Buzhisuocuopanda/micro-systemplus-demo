@@ -10,7 +10,7 @@ import java.util.HashMap;
  *
  * @author ruoyi
  */
-public class AjaxResult extends HashMap<String, Object>
+public class AjaxResult<T>  extends HashMap<String, Object>
 {
     private static final long serialVersionUID = 1L;
 
