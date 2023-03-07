@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="include :: header"></head>
+
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+<!--                            <li>-->
+<!--                                <label>设备编码：</label>-->
+<!--                                <input type="text" name="devNo"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>设备名称：</label>-->
+<!--                                <input type="text" name="devName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>规格型号：</label>-->
+<!--                                <input type="text" name="specModel"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>制造单位：</label>-->
+<!--                                <input type="text" name="devFactory"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>设备数量：</label>-->
+<!--                                <input type="text" name="devNumber"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>计量单位：</label>-->
+<!--                                <input type="text" name="groupName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>购入日期：</label>-->
+<!--                                <input type="text" class="time-input" placeholder="请选择购入日期" name="purchaseDate"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>保修期限：</label>-->
+<!--                                <input type="text" name="devGuaranteeTime"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>使用部门：</label>-->
+<!--                                <input type="text" name="deptId"/>-->
+<!--                            </li>-->
+                            <li style="display: flex;align-items: center;">
+                                使用部门：
+                                <input id="deptId" name="deptId" type="hidden"/>
+                                <input class="form-control" id="deptName" name="deptName" onclick="selectDeptTree()"
+                                       readonly="true" style="width: 155px;" type="text">
+                            </li>
+
+
+<!--                            <li>-->
+<!--                                <label>管理人员：</label>-->
+<!--                                <input type="text" name="manageuser"/>-->
+<!--                            </li>-->
+                            <li>
+                                管理人员：
+                                <input id="useBy" name="useBy" type="hidden"/>
+                                <input id="useByName" name="useByName" onclick="selectUserTree()" readonly="true"
+                                       style="width: 155px;"
+                                       type="text">
+                            </li>
+                            <li>
+                                <label>设备价格：</label>
+                                <input type="text" name="devValue"/>
+                            </li>
+                            <li>
+                                <label>安装地点：</label>
+                                <input type="text" name="devLocal"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:base:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:base:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:base:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:base:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:base:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:base:remove')}]];
+        var prefix = ctx + "system/base";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "设备基本信息",
+                columns: [{
+                    checkbox: true
+                },
+                // {
+                //     field: 'id',
+                //     title: '设备序号',
+                //     visible: false
+                // },
+                {
+                    field: 'devNo',
+                    title: '设备编码'
+                },
+                {
+                    field: 'devType',
+                    title: '设备类型'
+                },
+                {
+                    field: 'devName',
+                    title: '设备名称'
+                },
+                // {
+                //     field: 'specModel',
+                //     title: '规格型号'
+                // },
+                // {
+                //     field: 'devFactory',
+                //     title: '制造单位'
+                // },
+                {
+                    field: 'devNumber',
+                    title: '设备数量'
+                },
+                // {
+                //     field: 'groupName',
+                //     title: '计量单位'
+                // },
+                // {
+                //     field: 'purchaseDate',
+                //     title: '购入日期'
+                // },
+                // {
+                //     field: 'devGuaranteeTime',
+                //     title: '保修期限'
+                // },
+                {
+                    field: 'deptId',
+                    title: '使用部门'
+                },
+                {
+                    field: 'manageuser',
+                    title: '管理人员'
+                },
+                // {
+                //     field: 'devValue',
+                //     title: '设备价格'
+                // },
+                // {
+                //     field: 'devLocal',
+                //     title: '安装地点'
+                // },
+                // {
+                //     field: 'devStatus',
+                //     title: '设备状态'
+                // },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-default btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="detail(\'' + row.id + '\')"><i class="fa fa-eye"></i>详情</a> ');
+
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+
+        /*用户管理-新增-选择部门树*/
+        function selectDeptTree() {
+            var treeId = $("#treeId").val();
+            var deptId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+            var url = ctx + "system/dept/selectDeptTree/" + deptId;
+            var options = {
+                title: '选择部门',
+                width: "380",
+                url: url,
+                callBack: doSubmit
+            };
+            $.modal.openOptions(options);
+        }
+
+        /* 用户树开始 */
+        function selectUserTree() {
+            var options = {
+                title: '选择用户',
+                width: "380",
+                url: ctx + "system/user/selectUserTree?userIds=",
+                callBack: doUserTreeSubmit
+            };
+            $.modal.openOptions(options);
+        }
+
+        function doUserTreeSubmit(index, layero) {
+            var tree = layero.find("iframe")[0].contentWindow.$._tree;
+            if ($.tree.notAllowParents(tree)) {
+                var body = layer.getChildFrame('body', index);
+                $("#useBy").val(body.find('#treeId').val());
+                $("#useByName").val(body.find('#treeName').val());
+                layer.close(index);
+            }
+        }
+
+        function doSubmit(index, layero) {
+            var tree = layero.find("iframe")[0].contentWindow.$._tree;
+            if ($.tree.notAllowParents(tree)) {
+                var body = layer.getChildFrame('body', index);
+                $("#deptId").val(body.find('#treeId').val());
+                $("#deptName").val(body.find('#treeName').val());
+                layer.close(index);
+            }
+        }
+
+        /* 会议详细查看页面 */
+        function detail(meetingId) {
+            var url = prefix + '/detail/' + meetingId;
+            $.modal.openTab("查看会议详情", url);
+        }
+    </script>
+</body>
+</html>

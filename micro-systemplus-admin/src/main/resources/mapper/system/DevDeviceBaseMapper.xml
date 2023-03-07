@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mkst.mini.systemplus.mapper.DevDeviceBaseMapper">
+    
+    <resultMap type="DevDeviceBase" id="DevDeviceBaseResult">
+        <result property="id"    column="id"    />
+        <result property="devNo"    column="dev_no"    />
+        <result property="devType"    column="dev_type"    />
+        <result property="devName"    column="dev_name"    />
+        <result property="specModel"    column="spec_model"    />
+        <result property="devFactory"    column="dev_factory"    />
+        <result property="devNumber"    column="dev_number"    />
+        <result property="groupName"    column="group_name"    />
+        <result property="purchaseDate"    column="purchase_date"    />
+        <result property="devGuaranteeTime"    column="dev_guarantee_time"    />
+        <result property="deptId"    column="dept_id"    />
+        <result property="manageuser"    column="manageuser"    />
+        <result property="devValue"    column="dev_value"    />
+        <result property="devLocal"    column="dev_local"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="devStatus"    column="dev_status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectDevDeviceBaseVo">
+        select id, dev_no, dev_type, dev_name, spec_model, dev_factory, dev_number, group_name, purchase_date, dev_guarantee_time, dept_id, manageuser, dev_value, dev_local, create_by, dev_status, create_time, update_by, update_time, del_flag from dev_device_base
+    </sql>
+
+    <select id="selectDevDeviceBaseList" parameterType="DevDeviceBase" resultMap="DevDeviceBaseResult">
+<!--      <include refid="selectDevDeviceBaseVo"/>-->
+        select a.id, a.dev_no, a.dev_type, a.dev_name, a.spec_model, a.dev_factory, a.dev_number, a.group_name, a.purchase_date, a.dev_guarantee_time,
+        c.dept_name as dept_id, b.user_name as manageuser, a.dev_value, a.dev_local, a.create_by, a.dev_status, a.create_time, a.update_by, a.update_time, a.del_flag from dev_device_base a
+        left join sys_user b
+        on a.manageuser = b.user_id
+        LEFT JOIN sys_dept c
+        ON
+        a.dept_id=c.dept_name
+
+
+
+        <where>  
+            <if test="devNo != null  and devNo != ''"> and dev_no = #{devNo}</if>
+            <if test="devType != null  and devType != ''"> and dev_type = #{devType}</if>
+            <if test="devName != null  and devName != ''"> and dev_name like concat('%', #{devName}, '%')</if>
+            <if test="specModel != null  and specModel != ''"> and spec_model = #{specModel}</if>
+            <if test="devFactory != null  and devFactory != ''"> and dev_factory = #{devFactory}</if>
+            <if test="devNumber != null "> and dev_number = #{devNumber}</if>
+            <if test="groupName != null  and groupName != ''"> and group_name like concat('%', #{groupName}, '%')</if>
+            <if test="purchaseDate != null "> and purchase_date = #{purchaseDate}</if>
+            <if test="devGuaranteeTime != null  and devGuaranteeTime != ''"> and dev_guarantee_time = #{devGuaranteeTime}</if>
+            <if test="deptName != null  and deptName != ''"> and deptName = #{deptId}</if>
+            <if test="manageuser != null  and manageuser != ''"> and manageuser = #{manageuser}</if>
+            <if test="devValue != null "> and dev_value = #{devValue}</if>
+            <if test="devLocal != null  and devLocal != ''"> and dev_local = #{devLocal}</if>
+            <if test="devStatus != null "> and dev_status = #{devStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectDevDeviceBaseById" parameterType="Long" resultMap="DevDeviceBaseResult">
+        <include refid="selectDevDeviceBaseVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertDevDeviceBase" parameterType="DevDeviceBase" useGeneratedKeys="true" keyProperty="id">
+        insert into dev_device_base
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="devNo != null">dev_no,</if>
+            <if test="devType != null and devType != ''">dev_type,</if>
+            <if test="devName != null and devName != ''">dev_name,</if>
+            <if test="specModel != null">spec_model,</if>
+            <if test="devFactory != null">dev_factory,</if>
+            <if test="devNumber != null">dev_number,</if>
+            <if test="groupName != null">group_name,</if>
+            <if test="purchaseDate != null">purchase_date,</if>
+            <if test="devGuaranteeTime != null">dev_guarantee_time,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="manageuser != null">manageuser,</if>
+            <if test="devValue != null">dev_value,</if>
+            <if test="devLocal != null">dev_local,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="devStatus != null">dev_status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="devNo != null">#{devNo},</if>
+            <if test="devType != null and devType != ''">#{devType},</if>
+            <if test="devName != null and devName != ''">#{devName},</if>
+            <if test="specModel != null">#{specModel},</if>
+            <if test="devFactory != null">#{devFactory},</if>
+            <if test="devNumber != null">#{devNumber},</if>
+            <if test="groupName != null">#{groupName},</if>
+            <if test="purchaseDate != null">#{purchaseDate},</if>
+            <if test="devGuaranteeTime != null">#{devGuaranteeTime},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="manageuser != null">#{manageuser},</if>
+            <if test="devValue != null">#{devValue},</if>
+            <if test="devLocal != null">#{devLocal},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="devStatus != null">#{devStatus},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDevDeviceBase" parameterType="DevDeviceBase">
+        update dev_device_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="devNo != null">dev_no = #{devNo},</if>
+            <if test="devType != null and devType != ''">dev_type = #{devType},</if>
+            <if test="devName != null and devName != ''">dev_name = #{devName},</if>
+            <if test="specModel != null">spec_model = #{specModel},</if>
+            <if test="devFactory != null">dev_factory = #{devFactory},</if>
+            <if test="devNumber != null">dev_number = #{devNumber},</if>
+            <if test="groupName != null">group_name = #{groupName},</if>
+            <if test="purchaseDate != null">purchase_date = #{purchaseDate},</if>
+            <if test="devGuaranteeTime != null">dev_guarantee_time = #{devGuaranteeTime},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="manageuser != null">manageuser = #{manageuser},</if>
+            <if test="devValue != null">dev_value = #{devValue},</if>
+            <if test="devLocal != null">dev_local = #{devLocal},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="devStatus != null">dev_status = #{devStatus},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDevDeviceBaseById" parameterType="Long">
+        delete from dev_device_base where id = #{id}
+    </delete>
+
+    <delete id="deleteDevDeviceBaseByIds" parameterType="String">
+        delete from dev_device_base where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectdetail" resultType="com.mkst.mini.systemplus.domain.vo.DevDeviceBaseVo">
+        select * from dev_device_base where id = #{id}
+    </select>
+
+</mapper>

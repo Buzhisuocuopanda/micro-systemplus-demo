@@ -12,7 +12,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author admin
  */
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
-@MapperScan("com.mkst.mini.systemplus.*.mapper")
+//@ComponentScans(value = {@ComponentScan("com.mkst.mini.systemplus"), @ComponentScan("com.mkst")})
+@MapperScan("com.mkst.mini.systemplus.**.mapper")
+
+//@MapperScan("com.mkst.mini.systemplus.*.mapper")
 public class SystemPlusApplication {
     public static void main(String[] args){
         // System.setProperty("spring.devtools.restart.enabled", "false");
