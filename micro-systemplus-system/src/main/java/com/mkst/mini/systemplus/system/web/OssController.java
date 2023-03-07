@@ -1,3 +1,4 @@
+/*
 package com.mkst.mini.systemplus.system.web;
 
 import java.io.IOException;
@@ -10,13 +11,11 @@ import com.mkst.mini.systemplus.common.constant.Constants;
 import com.mkst.mini.systemplus.framework.util.ServletUtils;
 import com.mkst.mini.systemplus.system.domain.FastDfsFile;
 import com.mkst.mini.systemplus.system.domain.SysUser;
-import com.mkst.mini.systemplus.util.FastDFSClient;
 import com.mkst.mini.systemplus.util.SysConfigUtil;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.csource.common.NameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,31 +34,35 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
+*/
 /**
  * 附件管理 信息操作处理
- * 
+ *
  * @author systemplus
  * @date 2019-03-19
- */
+ *//*
+
 @Controller
 @RequestMapping("/system/oss")
 public class OssController extends BaseController
 {
     private String prefix = "system/oss";
-	
+
 	@Autowired
 	private IOssService ossService;
-	
+
 	@RequiresPermissions("system:oss:view")
 	@GetMapping()
 	public String oss()
 	{
 	    return prefix + "/oss";
 	}
-	
-	/**
+
+	*/
+/**
 	 * 查询附件管理列表
-	 */
+	 *//*
+
 	@RequiresPermissions("system:oss:list")
 	@PostMapping("/list")
 	@ResponseBody
@@ -82,10 +85,12 @@ public class OssController extends BaseController
 		return prefix + "/files";
 	}
 
-	
-	/**
+
+	*/
+/**
 	 * 导出附件管理列表
-	 */
+	 *//*
+
 	@RequiresPermissions("system:oss:export")
     @PostMapping("/export")
     @ResponseBody
@@ -95,31 +100,37 @@ public class OssController extends BaseController
         ExcelUtil<Oss> util = new ExcelUtil<Oss>(Oss.class);
         return util.exportExcel(list, "oss");
     }
-	
-	/**
+
+	*/
+/**
 	 * 新增附件管理
-	 */
+	 *//*
+
 	@GetMapping("/add")
 	public String add()
 	{
 	    return prefix + "/add";
 	}
-	
-	/**
+
+	*/
+/**
 	 * 新增保存附件管理
-	 */
+	 *//*
+
 	@RequiresPermissions("system:oss:add")
 	@Log(title = "附件管理", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(Oss oss)
-	{		
+	{
 		return toAjax(ossService.insertOss(oss));
 	}
 
-	/**
+	*/
+/**
 	 * 修改附件管理
-	 */
+	 *//*
+
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id, ModelMap mmap)
 	{
@@ -127,34 +138,40 @@ public class OssController extends BaseController
 		mmap.put("oss", oss);
 	    return prefix + "/edit";
 	}
-	
-	/**
+
+	*/
+/**
 	 * 修改保存附件管理
-	 */
+	 *//*
+
 	@RequiresPermissions("system:oss:edit")
 	@Log(title = "附件管理", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(Oss oss)
-	{		
+	{
 		return toAjax(ossService.updateOss(oss));
 	}
-	
-	/**
+
+	*/
+/**
 	 * 删除附件管理
-	 */
+	 *//*
+
 	@RequiresPermissions("system:oss:remove")
 	@Log(title = "附件管理", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids)
-	{		
+	{
 		return toAjax(ossService.deleteOssByIds(ids));
 	}
 
-	/**
+	*/
+/**
 	 * 附件上传及选择附件
-	 */
+	 *//*
+
 	@GetMapping("/ossSelect")
 	public String ossSelect(ModelMap mmap)
 	{
@@ -174,7 +191,9 @@ public class OssController extends BaseController
 			for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 				MultipartFile mf = entity.getValue();
 				String originalFilename = mf.getOriginalFilename();
-				String newFileName = null; /* 最后合并后的新文件名 */
+				String newFileName = null; */
+/* 最后合并后的新文件名 *//*
+
 				if (StringUtils.isNotEmpty(filename)) {
 					filename = URLDecoder.decode(request.getParameter("filename"), "utf-8");
 					newFileName = filename.concat(".").concat(FilenameUtils.getExtension(originalFilename));
@@ -216,3 +235,4 @@ public class OssController extends BaseController
 
 
 }
+*/

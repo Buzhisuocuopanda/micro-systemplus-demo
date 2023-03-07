@@ -4,24 +4,33 @@ import com.mkst.mini.systemplus.common.shiro.utils.ShiroUtils;
 import com.mkst.mini.systemplus.domain.DevDeviceBase;
 import com.mkst.mini.systemplus.domain.vo.DevDeviceBaseVo;
 import com.mkst.mini.systemplus.resful.domains.Devdto;
+import com.mkst.mini.systemplus.resful.mapper.DevDeviceBaseMapper;
 import com.mkst.mini.systemplus.resful.service.Devservice;
-import com.mkst.mini.systemplus.resful.utils.BeanCopyUtils;
+import com.mkst.mini.systemplus.resful.utils.BeanCopyUtilss;
+import com.mkst.mini.systemplus.resful.utils.BeanCopyUtilss;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
 public class Devserviceimpl implements Devservice {
+
+
+    @Resource
+    private DevDeviceBaseMapper devDeviceBaseMapper;
 
     @Transactional
     @Override
     public int insert(Devdto devdto) {
 
         Date date = new Date();
-        DevDeviceBase devDeviceBase = BeanCopyUtils.coypToClass(devdto, DevDeviceBase.class, null);
+        DevDeviceBase devDeviceBase = BeanCopyUtilss.coypToClass(devdto, DevDeviceBase.class, null);
         devDeviceBase.setCreateTime(date);
         devDeviceBase.setCreateBy(ShiroUtils.getLoginName());
         devDeviceBase.setDelFlag("0");
+        devDeviceBaseMapper.insertSelective(devDeviceBase);
+
 
         return 1;
     }
@@ -29,10 +38,11 @@ public class Devserviceimpl implements Devservice {
     @Override
     public int edit(Devdto devdto) {
         Date date = new Date();
-        DevDeviceBase devDeviceBase = BeanCopyUtils.coypToClass(devdto, DevDeviceBase.class, null);
+        DevDeviceBase devDeviceBase = BeanCopyUtilss.coypToClass(devdto, DevDeviceBase.class, null);
         devDeviceBase.setUpdateTime(date);
         devDeviceBase.setUpdateBy(ShiroUtils.getLoginName());
         devDeviceBase.setDelFlag("0");
+        devDeviceBaseMapper.updateByPrimaryKeySelective(devDeviceBase);
     return 1;
     }
 
@@ -43,12 +53,13 @@ public class Devserviceimpl implements Devservice {
         devDeviceBase.setId(Long.valueOf(devId));
         devDeviceBase.setUpdateTime(new Date());
         devDeviceBase.setUpdateBy(ShiroUtils.getLoginName());
+        devDeviceBaseMapper.updateByPrimaryKeySelective(devDeviceBase);
 return 1;
     }
 
     @Override
     public List<DevDeviceBaseVo> selectdev(Devdto devdto) {
-        return null;
+        return devDeviceBaseMapper.selectdev(devdto);
     }
 
     @Override

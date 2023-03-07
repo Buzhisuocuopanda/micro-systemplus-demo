@@ -1,12 +1,11 @@
+/*
 package com.mkst.mini.systemplus.util;
 
 import com.mkst.mini.systemplus.framework.util.SpringUtils;
 import com.mkst.mini.systemplus.system.domain.FastDfsFile;
 import com.mkst.mini.systemplus.system.service.IOssService;
 import org.apache.commons.io.IOUtils;
-import org.csource.common.MyException;
-import org.csource.common.NameValuePair;
-import org.csource.fastdfs.*;
+
 
 import java.io.*;
 import java.util.HashMap;
@@ -42,7 +41,8 @@ public class FastDFSClient {
         storageClient = new StorageClient(trackerServer, storageServer);
     }
 
-    /**
+    */
+/**
      * <strong>方法概要： 文件上传</strong> <br>
      * <strong>创建时间： 2018年5月9日11:18:12</strong> <br>
      *  synchronized 多文件上传时报io异常。采用锁解决该问题
@@ -50,7 +50,8 @@ public class FastDFSClient {
      * @param file
      * @return uploadResults
      * @author liuzhiping
-     */
+     *//*
+
     public FastDfsFile upload(FastDfsFile file, NameValuePair[] valuePairs) {
         try {
             String[] results = storageClient.upload_file(GROUP_NAME,file.getContent(),file.getFileExt(),valuePairs);
@@ -66,23 +67,27 @@ public class FastDFSClient {
         }
     }
 
-    /**
+    */
+/**
      * 上传文件
      * @param file 文件对象
      * @param fileName 文件名
      * @return
-     */
+     *//*
+
     public  String[] uploadFile(File file, String fileName) {
         return uploadFile(file,fileName,null);
     }
 
-    /**
+    */
+/**
      * 上传文件
      * @param file 文件对象
      * @param fileName 文件名
      * @param metaList 文件元数据
      * @return
-     */
+     *//*
+
     public  String[] uploadFile(File file, String fileName, Map<String,String> metaList) {
         try {
             byte[] buff = IOUtils.toByteArray(new FileInputStream(file));
@@ -104,11 +109,13 @@ public class FastDFSClient {
         return null;
     }
 
-    /**
+    */
+/**
      * 获取文件元数据
      * @param fileId 文件ID
      * @return
-     */
+     *//*
+
     public Map<String,String> getFileMetadata(String groupname,String fileId) {
         try {
             NameValuePair[] metaList = storageClient.get_metadata(groupname,fileId);
@@ -125,11 +132,13 @@ public class FastDFSClient {
         return null;
     }
 
-    /**
+    */
+/**
      * 删除文件
      * @param fileId 文件ID
      * @return 删除失败返回-1，否则返回0
-     */
+     *//*
+
     public int deleteFile(String groupname,String fileId) {
         try {
             return storageClient.delete_file(groupname,fileId);
@@ -139,12 +148,14 @@ public class FastDFSClient {
         return -1;
     }
 
-    /**
+    */
+/**
      * 下载文件
      * @param fileId 文件ID（上传文件成功后返回的ID）
      * @param outFile 文件下载保存位置
      * @return
-     */
+     *//*
+
     public  int downloadFile(String groupName,String fileId, File outFile) {
         FileOutputStream fos = null;
         try {
@@ -175,3 +186,4 @@ public class FastDFSClient {
         System.out.println(result[1]);
     }
 }
+*/

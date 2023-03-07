@@ -1,155 +1,456 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mkst.mini.systemplus.mapper.DevDeviceBaseMapper">
-    
-    <resultMap type="DevDeviceBase" id="DevDeviceBaseResult">
-        <result property="id"    column="id"    />
-        <result property="devNo"    column="dev_no"    />
-        <result property="devType"    column="dev_type"    />
-        <result property="devName"    column="dev_name"    />
-        <result property="specModel"    column="spec_model"    />
-        <result property="devFactory"    column="dev_factory"    />
-        <result property="devNumber"    column="dev_number"    />
-        <result property="groupName"    column="group_name"    />
-        <result property="purchaseDate"    column="purchase_date"    />
-        <result property="devGuaranteeTime"    column="dev_guarantee_time"    />
-        <result property="deptId"    column="dept_id"    />
-        <result property="manageuser"    column="manageuser"    />
-        <result property="devValue"    column="dev_value"    />
-        <result property="devLocal"    column="dev_local"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="devStatus"    column="dev_status"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="updateTime"    column="update_time"    />
-        <result property="delFlag"    column="del_flag"    />
-    </resultMap>
-
-    <sql id="selectDevDeviceBaseVo">
-        select id, dev_no, dev_type, dev_name, spec_model, dev_factory, dev_number, group_name, purchase_date, dev_guarantee_time, dept_id, manageuser, dev_value, dev_local, create_by, dev_status, create_time, update_by, update_time, del_flag from dev_device_base
-    </sql>
-
-    <select id="selectDevDeviceBaseList" parameterType="DevDeviceBase" resultMap="DevDeviceBaseResult">
-<!--      <include refid="selectDevDeviceBaseVo"/>-->
-        select a.id, a.dev_no, a.dev_type, a.dev_name, a.spec_model, a.dev_factory, a.dev_number, a.group_name, a.purchase_date, a.dev_guarantee_time,
-        c.dept_name as dept_id, b.user_name as manageuser, a.dev_value, a.dev_local, a.create_by, a.dev_status, a.create_time, a.update_by, a.update_time, a.del_flag from dev_device_base a
-        left join sys_user b
-        on a.manageuser = b.user_id
-        LEFT JOIN sys_dept c
-        ON
-        a.dept_id=c.dept_name
-
-
-
-        <where>  
-            <if test="devNo != null  and devNo != ''"> and dev_no = #{devNo}</if>
-            <if test="devType != null  and devType != ''"> and dev_type = #{devType}</if>
-            <if test="devName != null  and devName != ''"> and dev_name like concat('%', #{devName}, '%')</if>
-            <if test="specModel != null  and specModel != ''"> and spec_model = #{specModel}</if>
-            <if test="devFactory != null  and devFactory != ''"> and dev_factory = #{devFactory}</if>
-            <if test="devNumber != null "> and dev_number = #{devNumber}</if>
-            <if test="groupName != null  and groupName != ''"> and group_name like concat('%', #{groupName}, '%')</if>
-            <if test="purchaseDate != null "> and purchase_date = #{purchaseDate}</if>
-            <if test="devGuaranteeTime != null  and devGuaranteeTime != ''"> and dev_guarantee_time = #{devGuaranteeTime}</if>
-            <if test="deptName != null  and deptName != ''"> and deptName = #{deptId}</if>
-            <if test="manageuser != null  and manageuser != ''"> and manageuser = #{manageuser}</if>
-            <if test="devValue != null "> and dev_value = #{devValue}</if>
-            <if test="devLocal != null  and devLocal != ''"> and dev_local = #{devLocal}</if>
-            <if test="devStatus != null "> and dev_status = #{devStatus}</if>
-        </where>
-    </select>
-    
-    <select id="selectDevDeviceBaseById" parameterType="Long" resultMap="DevDeviceBaseResult">
-        <include refid="selectDevDeviceBaseVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertDevDeviceBase" parameterType="DevDeviceBase" useGeneratedKeys="true" keyProperty="id">
-        insert into dev_device_base
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="devNo != null">dev_no,</if>
-            <if test="devType != null and devType != ''">dev_type,</if>
-            <if test="devName != null and devName != ''">dev_name,</if>
-            <if test="specModel != null">spec_model,</if>
-            <if test="devFactory != null">dev_factory,</if>
-            <if test="devNumber != null">dev_number,</if>
-            <if test="groupName != null">group_name,</if>
-            <if test="purchaseDate != null">purchase_date,</if>
-            <if test="devGuaranteeTime != null">dev_guarantee_time,</if>
-            <if test="deptId != null">dept_id,</if>
-            <if test="manageuser != null">manageuser,</if>
-            <if test="devValue != null">dev_value,</if>
-            <if test="devLocal != null">dev_local,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="devStatus != null">dev_status,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="updateTime != null">update_time,</if>
-            <if test="delFlag != null and delFlag != ''">del_flag,</if>
-         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="devNo != null">#{devNo},</if>
-            <if test="devType != null and devType != ''">#{devType},</if>
-            <if test="devName != null and devName != ''">#{devName},</if>
-            <if test="specModel != null">#{specModel},</if>
-            <if test="devFactory != null">#{devFactory},</if>
-            <if test="devNumber != null">#{devNumber},</if>
-            <if test="groupName != null">#{groupName},</if>
-            <if test="purchaseDate != null">#{purchaseDate},</if>
-            <if test="devGuaranteeTime != null">#{devGuaranteeTime},</if>
-            <if test="deptId != null">#{deptId},</if>
-            <if test="manageuser != null">#{manageuser},</if>
-            <if test="devValue != null">#{devValue},</if>
-            <if test="devLocal != null">#{devLocal},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="devStatus != null">#{devStatus},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
-         </trim>
-    </insert>
-
-    <update id="updateDevDeviceBase" parameterType="DevDeviceBase">
-        update dev_device_base
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="devNo != null">dev_no = #{devNo},</if>
-            <if test="devType != null and devType != ''">dev_type = #{devType},</if>
-            <if test="devName != null and devName != ''">dev_name = #{devName},</if>
-            <if test="specModel != null">spec_model = #{specModel},</if>
-            <if test="devFactory != null">dev_factory = #{devFactory},</if>
-            <if test="devNumber != null">dev_number = #{devNumber},</if>
-            <if test="groupName != null">group_name = #{groupName},</if>
-            <if test="purchaseDate != null">purchase_date = #{purchaseDate},</if>
-            <if test="devGuaranteeTime != null">dev_guarantee_time = #{devGuaranteeTime},</if>
-            <if test="deptId != null">dept_id = #{deptId},</if>
-            <if test="manageuser != null">manageuser = #{manageuser},</if>
-            <if test="devValue != null">dev_value = #{devValue},</if>
-            <if test="devLocal != null">dev_local = #{devLocal},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="devStatus != null">dev_status = #{devStatus},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteDevDeviceBaseById" parameterType="Long">
-        delete from dev_device_base where id = #{id}
-    </delete>
-
-    <delete id="deleteDevDeviceBaseByIds" parameterType="String">
-        delete from dev_device_base where id in 
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
-    <select id="selectdetail" resultType="com.mkst.mini.systemplus.domain.vo.DevDeviceBaseVo">
-        select * from dev_device_base where id = #{id}
-    </select>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mkst.mini.systemplus.resful.mapper.DevDeviceBaseMapper">
+  <resultMap id="BaseResultMap" type="com.mkst.mini.systemplus.domain.DevDeviceBase">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dev_no" jdbcType="VARCHAR" property="devNo" />
+    <result column="dev_type" jdbcType="VARCHAR" property="devType" />
+    <result column="dev_name" jdbcType="VARCHAR" property="devName" />
+    <result column="spec_model" jdbcType="VARCHAR" property="specModel" />
+    <result column="dev_factory" jdbcType="VARCHAR" property="devFactory" />
+    <result column="dev_number" jdbcType="DECIMAL" property="devNumber" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="purchase_date" jdbcType="TIMESTAMP" property="purchaseDate" />
+    <result column="dev_guarantee_time" jdbcType="VARCHAR" property="devGuaranteeTime" />
+    <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+    <result column="manageuser" jdbcType="VARCHAR" property="manageuser" />
+    <result column="dev_value" jdbcType="DECIMAL" property="devValue" />
+    <result column="dev_local" jdbcType="VARCHAR" property="devLocal" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="dev_status" jdbcType="INTEGER" property="devStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, dev_no, dev_type, dev_name, spec_model, dev_factory, dev_number, group_name,
+    purchase_date, dev_guarantee_time, dept_id, manageuser, dev_value, dev_local, create_by,
+    dev_status, create_time, update_by, update_time, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.mkst.mini.systemplus.resful.domains.DevDeviceBaseCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `dev_device_base`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `dev_device_base`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `dev_device_base`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mkst.mini.systemplus.resful.domains.DevDeviceBaseCriteria">
+    delete from `dev_device_base`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mkst.mini.systemplus.domain.DevDeviceBase">
+    insert into `dev_device_base` (id, dev_no, dev_type,
+      dev_name, spec_model, dev_factory,
+      dev_number, group_name, purchase_date,
+      dev_guarantee_time, dept_id, manageuser,
+      dev_value, dev_local, create_by,
+      dev_status, create_time, update_by,
+      update_time, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{devNo,jdbcType=VARCHAR}, #{devType,jdbcType=VARCHAR},
+      #{devName,jdbcType=VARCHAR}, #{specModel,jdbcType=VARCHAR}, #{devFactory,jdbcType=VARCHAR},
+      #{devNumber,jdbcType=DECIMAL}, #{groupName,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP},
+      #{devGuaranteeTime,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{manageuser,jdbcType=VARCHAR},
+      #{devValue,jdbcType=DECIMAL}, #{devLocal,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+      #{devStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mkst.mini.systemplus.domain.DevDeviceBase">
+    insert into `dev_device_base`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="devNo != null">
+        dev_no,
+      </if>
+      <if test="devType != null">
+        dev_type,
+      </if>
+      <if test="devName != null">
+        dev_name,
+      </if>
+      <if test="specModel != null">
+        spec_model,
+      </if>
+      <if test="devFactory != null">
+        dev_factory,
+      </if>
+      <if test="devNumber != null">
+        dev_number,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="purchaseDate != null">
+        purchase_date,
+      </if>
+      <if test="devGuaranteeTime != null">
+        dev_guarantee_time,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="manageuser != null">
+        manageuser,
+      </if>
+      <if test="devValue != null">
+        dev_value,
+      </if>
+      <if test="devLocal != null">
+        dev_local,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="devStatus != null">
+        dev_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="devNo != null">
+        #{devNo,jdbcType=VARCHAR},
+      </if>
+      <if test="devType != null">
+        #{devType,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null">
+        #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="specModel != null">
+        #{specModel,jdbcType=VARCHAR},
+      </if>
+      <if test="devFactory != null">
+        #{devFactory,jdbcType=VARCHAR},
+      </if>
+      <if test="devNumber != null">
+        #{devNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="devGuaranteeTime != null">
+        #{devGuaranteeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageuser != null">
+        #{manageuser,jdbcType=VARCHAR},
+      </if>
+      <if test="devValue != null">
+        #{devValue,jdbcType=DECIMAL},
+      </if>
+      <if test="devLocal != null">
+        #{devLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="devStatus != null">
+        #{devStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mkst.mini.systemplus.resful.domains.DevDeviceBaseCriteria" resultType="java.lang.Long">
+    select count(*) from `dev_device_base`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectDevDeviceBaseById" resultType="com.mkst.mini.systemplus.domain.DevDeviceBase"></select>
+  <select id="selectdetail" resultType="com.mkst.mini.systemplus.domain.vo.DevDeviceBaseVo"></select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `dev_device_base`
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.devNo != null">
+        dev_no = #{record.devNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devType != null">
+        dev_type = #{record.devType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devName != null">
+        dev_name = #{record.devName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specModel != null">
+        spec_model = #{record.specModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devFactory != null">
+        dev_factory = #{record.devFactory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devNumber != null">
+        dev_number = #{record.devNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseDate != null">
+        purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.devGuaranteeTime != null">
+        dev_guarantee_time = #{record.devGuaranteeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null">
+        dept_id = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageuser != null">
+        manageuser = #{record.manageuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devValue != null">
+        dev_value = #{record.devValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.devLocal != null">
+        dev_local = #{record.devLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devStatus != null">
+        dev_status = #{record.devStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `dev_device_base`
+    set id = #{record.id,jdbcType=BIGINT},
+      dev_no = #{record.devNo,jdbcType=VARCHAR},
+      dev_type = #{record.devType,jdbcType=VARCHAR},
+      dev_name = #{record.devName,jdbcType=VARCHAR},
+      spec_model = #{record.specModel,jdbcType=VARCHAR},
+      dev_factory = #{record.devFactory,jdbcType=VARCHAR},
+      dev_number = #{record.devNumber,jdbcType=DECIMAL},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      dev_guarantee_time = #{record.devGuaranteeTime,jdbcType=VARCHAR},
+      dept_id = #{record.deptId,jdbcType=VARCHAR},
+      manageuser = #{record.manageuser,jdbcType=VARCHAR},
+      dev_value = #{record.devValue,jdbcType=DECIMAL},
+      dev_local = #{record.devLocal,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      dev_status = #{record.devStatus,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mkst.mini.systemplus.domain.DevDeviceBase">
+    update `dev_device_base`
+    <set>
+      <if test="devNo != null">
+        dev_no = #{devNo,jdbcType=VARCHAR},
+      </if>
+      <if test="devType != null">
+        dev_type = #{devType,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null">
+        dev_name = #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="specModel != null">
+        spec_model = #{specModel,jdbcType=VARCHAR},
+      </if>
+      <if test="devFactory != null">
+        dev_factory = #{devFactory,jdbcType=VARCHAR},
+      </if>
+      <if test="devNumber != null">
+        dev_number = #{devNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="devGuaranteeTime != null">
+        dev_guarantee_time = #{devGuaranteeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageuser != null">
+        manageuser = #{manageuser,jdbcType=VARCHAR},
+      </if>
+      <if test="devValue != null">
+        dev_value = #{devValue,jdbcType=DECIMAL},
+      </if>
+      <if test="devLocal != null">
+        dev_local = #{devLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="devStatus != null">
+        dev_status = #{devStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mkst.mini.systemplus.domain.DevDeviceBase">
+    update `dev_device_base`
+    set dev_no = #{devNo,jdbcType=VARCHAR},
+      dev_type = #{devType,jdbcType=VARCHAR},
+      dev_name = #{devName,jdbcType=VARCHAR},
+      spec_model = #{specModel,jdbcType=VARCHAR},
+      dev_factory = #{devFactory,jdbcType=VARCHAR},
+      dev_number = #{devNumber,jdbcType=DECIMAL},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      dev_guarantee_time = #{devGuaranteeTime,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      manageuser = #{manageuser,jdbcType=VARCHAR},
+      dev_value = #{devValue,jdbcType=DECIMAL},
+      dev_local = #{devLocal,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      dev_status = #{devStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectdev" resultType="com.mkst.mini.systemplus.domain.vo.DevDeviceBaseVo">
+    select
+        * from dev_device_base
+  </select>
+  <select id="selectDevDeviceBaseList" resultType="com.mkst.mini.systemplus.domain.DevDeviceBase"></select>
 
 </mapper>

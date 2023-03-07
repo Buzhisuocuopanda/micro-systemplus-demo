@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 设备基本信息Controller
- * 
+ *
  * @author ruoyi
  * @date 2023-03-06
  */

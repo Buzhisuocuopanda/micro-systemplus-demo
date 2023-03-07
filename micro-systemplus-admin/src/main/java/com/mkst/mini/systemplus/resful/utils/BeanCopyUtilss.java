@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 @Slf4j
-public class BeanCopyUtils {
+public class BeanCopyUtilss {
     /**
      * 使用缓存提高效率
      */
@@ -129,7 +129,7 @@ interface IAction<T> {
 /**
  * 测试用
  */
-class BeanUtils {
+class BeanUtilss {
 
     /**
      * the beanCopierMap
@@ -184,13 +184,13 @@ class BeanUtils {
                     String fieldName = tempFieldName.substring(0, 1)
                             .toLowerCase() + tempFieldName.substring(1);
                     Class clazz = ClassUtils.getElementType(target, fieldName);
-                    retList.add(BeanUtils.convert(source, clazz));
+                    retList.add(BeanUtilss.convert(source, clazz));
                 }
                 return retList;
             } else if (value instanceof Map) {
                 // TODO：大漠知秋 - 暂时用不到，后续有需要再补充
             } else if (!ClassUtils.isPrimitive(targetClazz)) {
-                return BeanUtils.convert(value, targetClazz);
+                return BeanUtilss.convert(value, targetClazz);
             }
             return value;
         }

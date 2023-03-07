@@ -31,7 +31,7 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${swagger.version}</version>
 		</dependency>
-		
+
 		<!-- swagger2-UI-->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -45,7 +45,7 @@
             <artifactId>systemplus-system</artifactId>
             <version>${micro-systemplus.version}</version>
         </dependency>
-        
+
         <!--<dependency>
             <groupId>com.micro-systemplus</groupId>
             <artifactId>systemplus-generator</artifactId>
@@ -72,6 +72,11 @@
               <scope>system</scope>
               <systemPath>${project.basedir}/libs/ws.jar</systemPath>
           </dependency>
+        <dependency>
+            <groupId>com.survey</groupId>
+            <artifactId>baseproject</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -95,17 +100,17 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>   
-                <groupId>org.apache.maven.plugins</groupId>   
-                <artifactId>maven-war-plugin</artifactId>   
-                <version>3.0.0</version>   
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <warName>${artifactId}</warName>
-                </configuration>   
-		   </plugin>   
+                </configuration>
+		   </plugin>
         </plugins>
         <finalName>${artifactId}</finalName>
     </build>
-	
+
 </project>
